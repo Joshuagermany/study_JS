@@ -1,7 +1,6 @@
 //start of the Backend
 const express = require('express')
 const app = express()
-const port = 5000
 
 const mongoose = require('mongoose')
 const config = require('./config/key')
@@ -21,6 +20,8 @@ mongoose.connect(config.mongoURI)
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
+
+app.get('/api/hello', (req, res) => res.send('hello? Im testing the app'))
 
 app.post('api/users/register', (req, res) => {
     //get the info for register from USER, and post it to DB
@@ -85,6 +86,8 @@ app.get('api/users/logout', auth, (req, res) => {
         })
 })
 
+
+const port = 5000
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
